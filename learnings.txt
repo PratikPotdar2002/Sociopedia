@@ -1,0 +1,30 @@
+1)Do not make typs while writing endpoints test out the endpoints on postman if needed
+2)Use try catch block to see is value is being assigned or not.
+3)when we are using req.body then we are passing down the body through the request like as follow
+		  const patchLike = async () => {
+    		  const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+     		  method: "PATCH",
+     		  headers: {
+        	  Authorization: `Bearer ${token}`,
+        	  "Content-Type": "application/json",
+      		  },
+     		  body: JSON.stringify({ userId: loggedInUserId }), <_______like this
+   		 });
+   		 const updatedPost = await response.json();
+  		 dispatch(setPost({ post: updatedPost }));
+  		 };
+
+4) if our endpoint is like this (router.patch("/:id/like",verifyToken,likePost)) for example  then *we have* to consume endpoint using same name as id while consuming it.   -----doubt
+
+Colon (:) in router.patch("/:id/like", verifyToken, likePost):
+
+In Express.js and many other web frameworks, the colon (:) is used to define route parameters in URL patterns. When a request matches a route pattern with a colon-prefixed segment, Express.js extracts that segment from the URL and makes it available as a property on the req.params object.
+So, in the route pattern "/:id/like", :id is a route parameter representing a dynamic segment in the URL. For example, if a request is made to /123/like, Express.js would extract 123 as the value of req.params.id.
+ds
+
+5)Underscore (_) in http://localhost:3001/users/${_id}/${friendId}:
+
+In this URL template, the underscore (_) is typically used as a variable placeholder. It's often replaced with a specific value when the URL is constructed dynamically. For example, in a JavaScript template string like ${_id}, _id would be a variable holding the value that should replace the underscore in the URL.
+So, http://localhost:3001/users/${_id}/${friendId} might be used as a template to construct a URL dynamically where _id and friendId are variables representing specific IDs or values.
+
+6)Mongodb URL password can not contain special chars
